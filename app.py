@@ -3,7 +3,7 @@ from boggle import Boggle
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = "oh-so-secret"
+app.config['SECRET_KEY'] = 'oh-so-secret'
 
 boggle_game = Boggle()
 
@@ -12,10 +12,10 @@ boggle_game = Boggle()
 def homepage():
     board = boggle_game.make_board()
     session['board'] = board
-    highscore = session.get("highscore", 0)
-    no_plays = session.get("no_plays", 0)
+    highscore = session.get('highscore', 0)
+    no_plays = session.get('no_plays', 0)
 
-    return render_template("index.html", board=board, highscore=highscore, no_plays=no_plays)
+    return render_template('index.html', board=board, highscore=highscore, no_plays=no_plays)
 
 
 @app.route('/check-word')
@@ -28,14 +28,14 @@ def check_word():
    
 
 
-@app.route("/post-score", methods=["GET", "POST"])
+@app.route('/post-score', methods=["GET", "POST"])
 def post_score():
     if request.method == 'POST':
-        score = request.json["score"]
-        highscore = session.get("highscore", 0)
-        nplays = session.get("nplays", 0)
+        score = request.json['score']
+        highscore = session.get('highscore', 0)
+        no_plays = session.get('no_plays', 0)
 
-        session['nplays'] = nplays + 1
+        session['no_plays'] = no_plays + 1
         session['highscore'] = max(score, highscore)
 
         return jsonify(brokeRecord=score > highscore)

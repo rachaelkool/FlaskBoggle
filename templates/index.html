@@ -2,47 +2,50 @@
 <html>
     <head>
         <title>Boggle</title>
-    <!-- <link rel="stylesheet" href="/static/boggle.css"> -->
-    </head>
-    <body>
-    <section id="boggle">
-
-        <table class="board">
-            <tbody>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">    </head>
+    <body class="bg-light">
+    <section id='boggle' class="container-fluid p-3">
+        <h1 class="text-info pl-2 pt-3 pb-3">Play Boggle</h1>
+        <table class='board'>
+            <tbody class="table table-dark">
                 {% for row in board %}
                 <tr>
                     {% for cell in row %}
-                    <td>{{ cell }}</td>
+                    <td class="p-3">{{ cell }}</td>
                     {% endfor %}
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <p>High Score: {{ highscore }} in {{ no_plays }} plays</p>
 
-        <p class="score">Score: 0</p>
-        <p class="timer">Seconds Left:</p>
+        <p class="pt-5">Score:
+        <content class="score">0</content>
+        </p>
 
-        <form method="POST" class="add-word">
-            <input name="word" class="word" autofocus>
-            <button>Enter Guess</button>
+        <p>Time Remaining:
+            <content class="timer">0</content>
+        s</p>
+      
+
+        <form method="POST" class="add-word form-group">
+            <input name="word" class="word" placeholder="your word here" autofocus>
+            <button class="btn btn-info">Enter Guess</button>
         </form>
 
         <p class="msg">
-            <!-- our JS will put messages here dynamically -->
         </p>
 
-        <ul class="words">
-            <!-- our JS will words here as they score -->   
+        <ul class="words pb-3">
         </ul>
+
+        <p class="font-italic">High Score: {{ highscore }} in {{ no_plays }} plays</p>
 
     </section>
     <script src="http://unpkg.com/jquery"></script>
     <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
-    <script src="/static/boggle.js"></script> -->
-    <!-- <script>
-      let game = new BoggleGame("boggle", 60);
-    </script>
+    <script src="static/boggle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     </body>
 </html>
